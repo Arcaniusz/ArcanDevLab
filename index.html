@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arcan DevLab - Professional Web Development</title>
+    <meta name="description" content="Professional web development services using pure HTML, CSS, and JavaScript. Building stunning websites with optimal performance.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Language Modal -->
+    <div id="languageModal" class="modal-overlay">
+        <div class="modal-content glass">
+            <h2 class="modal-title" data-translate="selectLanguage">Select Language</h2>
+            <div class="language-buttons">
+                <button class="language-btn glass-dark" onclick="selectLanguage('en')">
+                    <span>🇺🇸 English</span>
+                </button>
+                <button class="language-btn glass-dark" onclick="selectLanguage('pl')">
+                    <span>🇵🇱 Polski</span>
+                </button>
+                <button class="language-btn glass-dark" onclick="selectLanguage('nl')">
+                    <span>🇳🇱 Nederlands</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- UI Style Details Modal -->
+    <div id="styleDetailsModal" class="modal-overlay">
+        <div class="modal-content glass style-modal">
+            <div class="modal-header">
+                <h2 id="styleModalTitle" class="modal-title">Style Details</h2>
+                <button class="modal-close" onclick="hideStyleDetails()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div id="styleModalContent" class="modal-body">
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navigation">
+        <div class="nav-container">
+            <div class="nav-logo">Arcan DevLab</div>
+            <div class="nav-links">
+                <button class="nav-link" onclick="scrollToSection('home')" data-translate="home">Home</button>
+                <button class="nav-link" onclick="scrollToSection('pricing')" data-translate="pricing">Pricing</button>
+                <button class="nav-link" onclick="scrollToSection('gallery')" data-translate="gallery">Gallery</button>
+                <button class="nav-link" onclick="scrollToSection('contact')" data-translate="contact">Contact</button>
+                <button class="nav-link" onclick="scrollToSection('faq')" data-translate="faq">FAQ</button>
+            </div>
+            <select id="languageSelect" class="language-select glass-dark">
+                <option value="en">EN</option>
+                <option value="pl">PL</option>
+                <option value="nl">NL</option>
+            </select>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="hero-bg-elements">
+            <div class="bg-element bg-element-1"></div>
+            <div class="bg-element bg-element-2"></div>
+            <div class="bg-element bg-element-3"></div>
+        </div>
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <span data-translate="heroTitle">Arcan DevLab</span>
+                <br>
+                <span id="typingText" class="typing-text"></span>
+            </h1>
+            <p class="hero-subtitle" data-translate="heroSubtitle">Building stunning websites with pure HTML, CSS & JavaScript</p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary animate-glow" onclick="scrollToSection('slider')" data-translate="viewWork">View My Work</button>
+                <button class="btn btn-secondary" onclick="scrollToSection('contact')" data-translate="contactMe">Contact Me</button>
+            </div>
+        </div>
+        <div class="scroll-hint">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- Logos Slider Section -->
+    <section id="slider" class="logos-section">
+        <div class="section-container">
+            <h2 class="section-title" data-translate="trustedBy" style="text-align: center;">Trusted by Companies</h2>
+            <p class="logos-hint" data-translate="clickLogoHint">Click on a logo to see my work!</p>
+            <div class="logos-slider-container">
+                <div id="logosSlider" class="logos-slider">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-section">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title" data-translate="servicesTitle">Professional Services</h2>
+                <p class="section-subtitle" data-translate="servicesSubtitle">Comprehensive web development solutions for your business</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card glass card-hover">
+                    <div class="service-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 class="service-title" data-translate="service1Title">Web Development</h3>
+                    <p class="service-description" data-translate="service1Desc">Custom websites built with pure HTML, CSS & JavaScript for optimal performance</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i><span data-translate="service1Feature1">Responsive Design</span></li>
+                        <li><i class="fas fa-check"></i><span data-translate="service1Feature2">Cross-browser Compatible</span></li>
+                        <li><i class="fas fa-check"></i><span data-translate="service1Feature3">SEO Optimized</span></li>
+                        <li><i class="fas fa-check"></i><span data-translate="service1Feature4">Fast Loading</span></li>
+                    </ul>
+                </div>
+                <div class="service-card glass card-hover">
+                    <div class="service-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="service-title" data-translate="service2Title">Mobile-First Design</h3>
+                    <p class="service-description" data-translate="service2Desc">Websites that look perfect on all devices from smartphones to desktops</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i><span data-translate="service2Feature1">Touch-friendly</span></li>
+                        <li><i class="fas fa-check"></i><span data-translate="service2Feature2">Retina Ready</span></li>
+                        <li><i class="fas fa-check"></i><span data-translate="service2Feature3">Progressive Web App</span></li>
+                        <li><i class="fas fa-check"></i><span data-translate="service2Feature4">Offline Support</span></li>
+                    </ul>
+                </div>
+                <div class="service-card glass card-hover">
+                    <div class="service-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3 class="service-title" data-translate="service3Title">SEO & Performance</h3>
+                    <p class="service-description" data-translate="service3Desc">Optimized for search engines and lightning-fast page load speeds</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i><span data-translate="service3Feature1">Google PageSpeed</span></li>
+                        <li><i class="fas fa-check"></i><span data-translate="service3Feature2">Schema Markup</span></li>
+                        <li><i class="fas fa-check"></i><span data-translate="service3Feature3">Meta Optimization</span></li>
+                        <li><i class="fas fa-check"></i><span data-translate="service3Feature4">Analytics Setup</span></li>
+                    </ul>
+                </div>
+                <div class="service-card glass card-hover">
+                    <div class="service-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3 class="service-title" data-translate="service4Title">Maintenance & Support</h3>
+                    <p class="service-description" data-translate="service4Desc">Ongoing support to keep your website secure and up-to-date</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i><span data-translate="service4Feature1">Security Updates</span></li>
+                        <li><i class="fas fa-check"></i><span data-translate="service4Feature2">Content Updates</span></li>
+                        <li><i class="fas fa-check"></i><span data-translate="service4Feature3">Bug Fixes</span></li>
+                        <li><i class="fas fa-check"></i><span data-translate="service4Feature4">24/7 Monitoring</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="section-cta">
+                <button class="btn btn-primary" onclick="scrollToSection('contact')" data-translate="getStarted">Get Started Today</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing-section">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title" data-translate="pricingTitle">Choose Your Package</h2>
+                <p class="section-subtitle" data-translate="pricingSubtitle">Professional web development services tailored to your needs</p>
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card glass card-hover">
+                    <div class="pricing-header">
+                        <div class="pricing-icon green">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h3 class="pricing-name" data-translate="starterPackage">Starter</h3>
+                        <div class="pricing-price">$149</div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i><span data-translate="starterFeature1">Landing Page</span></li>
+                        <li><i class="fas fa-check"></i><span data-translate="starterFeature2">Mobile Responsive</span></li>
+                        <li><i class="fas fa-check"></i><span data-translate="starterFeature3">Contact Form</span></li>
+                        <li><i class="fas fa-check"></i><span data-translate="starterFeature4">Basic Setup</span></li>
+                    </ul>
+                    <button class="btn btn-green" onclick="scrollToSection('contact')" data-translate="choosePackage">Choose Package</button>
+                </div>
+                <div class="pricing-card glass card-hover">
+                    <div class="pricing-header">
+                        <div class="pricing-icon blue">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+                        <h3 class="pricing-name" data-translate="businessPackage">Business</h3>
+                        <div class="pricing-price">$299</div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i><span data-translate="businessFeature1">5 Pages</span></li>
+                        <li><i class="fas fa-check"></i><span data-translate="businessFeature2">Responsive Design</span></li>
+                        <li><i class="fas fa-check"></i><span data-translate="businessFeature3">Contact Forms</span></li>
+                        <li><i class="fas fa-check"></i><span data-translate="businessFeature4">Basic SEO</span></li>
+                        <li><i class="fas fa-check"></i><span data-translate="businessFeature5">Google Analytics</span></li>
+                    </ul>
+                    <button class="btn btn-blue" onclick="scrollToSection('contact')" data-translate="choosePackage">Choose Package</button>
+                </div>
+                <div class="pricing-card glass card-hover popular">
+                    <div class="popular-badge" data-translate="popular">Most Popular</div>
+                    <div class="pricing-header">
+                        <div class="pricing-icon indigo">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h3 class="pricing-name" data-translate="proPackage">Professional</h3>
+                        <div class="pricing-price">$499</div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i><span data-translate="proFeature1">10 Pages</span></li>
+                        <li><i class="fas fa-check"></i><span data-translate="proFeature2">Advanced Animations</span></li>
+                        <li><i class="fas fa-check"></i><span data-translate="proFeature3">CMS Integration</span></li>
+                        <li><i class="fas fa-check"></i><span data-translate="proFeature4">Advanced SEO</span></li>
+                        <li><i class="fas fa-check"></i><span data-translate="proFeature5">Social Integrations</span></li>
+                    </ul>
+                    <button class="btn btn-indigo" onclick="scrollToSection('contact')" data-translate="choosePackage">Choose Package</button>
+                </div>
+                <div class="pricing-card glass card-hover">
+                    <div class="pricing-header">
+                        <div class="pricing-icon purple">
+                            <i class="fas fa-gem"></i>
+                        </div>
+                        <h3 class="pricing-name" data-translate="premiumPackage">Premium</h3>
+                        <div class="pricing-price">$749</div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i><span data-translate="premiumFeature1">15 Pages</span></li>
+                        <li><i class="fas fa-check"></i><span data-translate="premiumFeature2">Custom Design Elements</span></li>
+                        <li><i class="fas fa-check"></i><span data-translate="premiumFeature3">E-commerce Ready</span></li>
+                        <li><i class="fas fa-check"></i><span data-translate="premiumFeature4">Advanced Integrations</span></li>
+                        <li><i class="fas fa-check"></i><span data-translate="premiumFeature5">Performance Optimization</span></li>
+                    </ul>
+                    <button class="btn btn-purple" onclick="scrollToSection('contact')" data-translate="choosePackage">Choose Package</button>
+                </div>
+                <div class="pricing-card glass card-hover">
+                    <div class="pricing-header">
+                        <div class="pricing-icon gold">
+                            <i class="fas fa-crown"></i>
+                        </div>
+                        <h3 class="pricing-name" data-translate="enterprisePackage">Enterprise</h3>
+                        <div class="pricing-price" data-translate="enterprisePrice">$999+</div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i><span data-translate="enterpriseFeature1">Unlimited Pages</span></li>
+                        <li><i class="fas fa-check"></i><span data-translate="enterpriseFeature2">Full Custom Development</span></li>
+                        <li><i class="fas fa-check"></i><span data-translate="enterpriseFeature3">Advanced Functionality</span></li>
+                        <li><i class="fas fa-check"></i><span data-translate="enterpriseFeature4">3 Months Maintenance</span></li>
+                        <li><i class="fas fa-check"></i><span data-translate="enterpriseFeature5">Priority Support</span></li>
+                    </ul>
+                    <button class="btn btn-gold" onclick="scrollToSection('contact')" data-translate="choosePackage">Choose Package</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery-section">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title" data-translate="galleryTitle">UI Style Showcase</h2>
+                <p class="section-subtitle" data-translate="gallerySubtitle">Explore different design approaches and styles</p>
+            </div>
+            <div class="gallery-container">
+                <div id="galleryContent" class="gallery-content glass">
+                </div>
+                <div class="gallery-controls">
+                    <button class="btn btn-secondary" onclick="previousStyle()">
+                        <i class="fas fa-chevron-left"></i><span data-translate="previous">Previous</span>
+                    </button>
+                    <button class="btn btn-secondary" onclick="nextStyle()">
+                        <span data-translate="next">Next</span><i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+                <div id="galleryDots" class="gallery-dots">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Info Section -->
+    <section class="contact-info-section">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title" data-translate="getInTouch">Get In Touch</h2>
+                <p class="section-subtitle" data-translate="contactInfo">Contact Information</p>
+            </div>
+            <div class="contact-info-grid">
+                <div class="contact-card glass card-hover">
+                    <div class="contact-icon indigo">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <h3 data-translate="phoneNumber">Phone</h3>
+                    <a href="tel:+31621863315">+31 621 863 315</a>
+                </div>
+                <div class="contact-card glass card-hover">
+                    <div class="contact-icon indigo">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3 data-translate="emailAddress">Email</h3>
+                    <a href="mailto:arcaniusz123@gmail.com">arcaniusz123@gmail.com</a>
+                </div>
+                <div class="contact-card glass card-hover">
+                    <div class="contact-icon indigo">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3 data-translate="location">Location</h3>
+                    <p>The Hague, Netherlands</p>
+                </div>
+                <div class="contact-card glass card-hover">
+                    <div class="contact-icon green">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3 data-translate="responseTime">Response Time</h3>
+                    <p class="highlight" data-translate="within24Hours">Within 24 hours</p>
+                </div>
+            </div>
+            <div class="working-hours-grid">
+                <div class="working-hours-card glass">
+                    <h3 data-translate="workingHours">Working Hours</h3>
+                    <div class="hours-list">
+                        <div class="hours-item">
+                            <span data-translate="mondayFriday">Monday - Friday</span>
+                            <span class="highlight">9:00 - 18:00</span>
+                        </div>
+                        <div class="hours-item">
+                            <span data-translate="weekend">Weekend</span>
+                            <span class="amber">By appointment</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="consultation-card glass">
+                    <h3 data-translate="projectConsultation">Free Project Consultation</h3>
+                    <p>Get expert advice on your web development project. I'll help you choose the right technology stack and create a roadmap for success.</p>
+                    <button class="btn btn-indigo" data-translate="scheduleCall">Schedule a Call</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Forms Section -->
+    <section id="contact" class="contact-forms-section">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title" data-translate="contactTitle">Let's Work Together</h2>
+                <p class="section-subtitle" data-translate="contactSubtitle">Get in touch or place your order</p>
+            </div>
+            <div class="forms-grid">
+                <!-- Contact Form -->
+                <div class="form-card glass">
+                    <h3 class="form-title" data-translate="contactForm">Contact Me</h3>
+                    <form id="contactForm" class="contact-form">
+                        <div class="form-group">
+                            <label for="contactName" data-translate="name">Name</label>
+                            <input type="text" id="contactName" name="name" class="form-input glass-dark" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactEmail" data-translate="email">Email</label>
+                            <input type="email" id="contactEmail" name="email" class="form-input glass-dark" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactMessage" data-translate="message">Message</label>
+                            <textarea id="contactMessage" name="message" rows="4" class="form-input glass-dark" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-indigo full-width" data-translate="sendMessage">Send Message</button>
+                    </form>
+                </div>
+
+                <!-- Order Form -->
+                <div class="form-card glass">
+                    <h3 class="form-title" data-translate="orderForm">Place Order</h3>
+                    <form id="orderForm" class="order-form">
+                        <div class="form-group">
+                            <label for="packageType" data-translate="package">Package</label>
+                            <select id="packageType" name="packageType" class="form-input glass-dark" required>
+                                <option value="" data-translate="selectPackage">Select Package</option>
+                                <option value="basic">Basic - $299</option>
+                                <option value="pro">Pro - $599</option>
+                                <option value="custom">Custom - Let's Talk</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label data-translate="additionalServices">Additional Services</label>
+                            <div class="checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="seoOptimization" value="true">
+                                    <span class="checkmark"></span>
+                                    <span data-translate="seoOptimization">SEO Optimization (+$100)</span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="maintenancePlan" value="true">
+                                    <span class="checkmark"></span>
+                                    <span data-translate="maintenancePlan">Maintenance Plan (+$50/month)</span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="hostingSetup" value="true">
+                                    <span class="checkmark"></span>
+                                    <span data-translate="hostingSetup">Hosting Setup (+$25)</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="projectDetails" data-translate="projectDetails">Project Details</label>
+                            <textarea id="projectDetails" name="projectDetails" rows="4" class="form-input glass-dark" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-purple full-width" data-translate="placeOrder">Place Order</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="faq-section">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title" data-translate="faqTitle">Frequently Asked Questions</h2>
+                <p class="section-subtitle" data-translate="faqSubtitle">Everything you need to know</p>
+            </div>
+            <div id="faqContainer" class="faq-container">
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="section-container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3 class="footer-title">Arcan DevLab</h3>
+                    <p data-translate="footerDescription">Professional web development services using pure HTML, CSS, and JavaScript.</p>
+                    <div class="footer-features">
+                        <div class="footer-feature">
+                            <i class="fas fa-bolt"></i>
+                            <span>Fast Loading</span>
+                        </div>
+                        <div class="footer-feature">
+                            <i class="fas fa-mobile-alt"></i>
+                            <span>Mobile Friendly</span>
+                        </div>
+                        <div class="footer-feature">
+                            <i class="fas fa-search"></i>
+                            <span>SEO Optimized</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4 data-translate="quickLinks">Quick Links</h4>
+                    <div class="footer-links">
+                        <button onclick="scrollToSection('home')" data-translate="home">Home</button>
+                        <button onclick="scrollToSection('pricing')" data-translate="pricing">Pricing</button>
+                        <button onclick="scrollToSection('gallery')" data-translate="gallery">Gallery</button>
+                        <button onclick="scrollToSection('contact')" data-translate="contact">Contact</button>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4 data-translate="followMe">Follow Me</h4>
+                    <div class="social-links">
+                        <a href="https://twitter.com" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://github.com" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://dribbble.com" target="_blank" aria-label="Dribbble"><i class="fab fa-dribbble"></i></a>
+                    </div>
+                    <div class="footer-newsletter">
+                        <h5>Newsletter</h5>
+                        <p style="font-size: 0.875rem; color: #94a3b8; margin-bottom: 1rem;">Stay updated with latest web trends</p>
+                        <div style="display: flex; gap: 0.5rem;">
+                            <input type="email" placeholder="Your email" style="flex: 1; padding: 0.5rem; border-radius: 4px; border: 1px solid #475569; background: rgba(30, 41, 59, 0.3); color: white; font-size: 0.875rem;">
+                            <button style="padding: 0.5rem 1rem; background: #6366f1; color: white; border: none; border-radius: 4px; font-size: 0.875rem; cursor: pointer;">Subscribe</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Arcan DevLab. <span data-translate="allRightsReserved">All rights reserved.</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">
+        <div class="toast-content">
+            <i class="toast-icon"></i>
+            <span class="toast-message"></span>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/translations.js"></script>
+    <script src="js/components.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
