@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bella Vista Restaurant - Demo</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Restaurant Demo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -12,23 +13,55 @@
             box-sizing: border-box;
         }
         
+        :root {
+            --gold: #d4af37;
+            --gold-light: #e6c567;
+            --gold-dark: #b8860b;
+            --dark: #1a1a1a;
+            --darker: #0d0d0d;
+            --light: #f8f5f0;
+            --accent: #8B0000;
+            --accent-light: #a52a2a;
+        }
+        
         body {
-            font-family: 'Inter', sans-serif;
-            line-height: 1.6;
-            color: #1f2937;
-            background: #fef7ed;
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.8;
+            color: var(--light);
+            background: var(--darker);
+            overflow-x: hidden;
+            background-image: radial-gradient(circle at 10% 20%, rgba(212, 175, 55, 0.05) 0%, transparent 20%),
+                              radial-gradient(circle at 90% 80%, rgba(212, 175, 55, 0.05) 0%, transparent 20%),
+                              radial-gradient(circle at 30% 70%, rgba(139, 0, 0, 0.03) 0%, transparent 20%),
+                              radial-gradient(circle at 70% 30%, rgba(139, 0, 0, 0.03) 0%, transparent 20%);
+            animation: float 25s infinite linear;
+        }
+        
+        @keyframes float {
+            0% { background-position: 0% 0%, 0% 0%, 0% 0%, 0% 0%; }
+            25% { background-position: -20px 20px, 20px -20px, -10px 10px, 10px -10px; }
+            50% { background-position: 0% 40px, 0% -40px, 0% 20px, 0% -20px; }
+            75% { background-position: 20px 20px, -20px -20px, 10px 10px, -10px -10px; }
+            100% { background-position: 0% 0%, 0% 0%, 0% 0%, 0% 0%; }
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
         }
         
         .header {
-            background: #ffffff;
-            box-shadow: 0 2px 10px rgba(217, 119, 6, 0.1);
+            background: rgba(10, 10, 10, 0.9);
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.4);
             position: sticky;
             top: 0;
-            z-index: 100;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
         }
         
         .nav {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 1rem 2rem;
             display: flex;
@@ -37,188 +70,538 @@
         }
         
         .logo {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             font-weight: 700;
-            color: #d97706;
+            color: var(--gold);
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            letter-spacing: 1px;
+        }
+        
+        .logo span {
+            color: var(--light);
+            font-weight: 300;
+            font-size: 1.2rem;
         }
         
         .nav-links {
             display: flex;
-            gap: 2rem;
+            gap: 2.5rem;
             list-style: none;
         }
         
         .nav-links a {
             text-decoration: none;
-            color: #374151;
+            color: var(--light);
             font-weight: 500;
-            transition: color 0.3s;
+            transition: all 0.4s;
+            position: relative;
+            font-size: 1.1rem;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.4s ease;
         }
         
         .nav-links a:hover {
-            color: #d97706;
+            color: var(--gold);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
         }
         
         .hero {
-            background: linear-gradient(135deg, #fed7aa 0%, #fdba74 100%);
-            padding: 6rem 2rem;
-            text-align: center;
+            position: relative;
+            height: 100vh;
+            min-height: 700px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)), 
+                        url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3') center/cover;
+            z-index: -1;
         }
         
         .hero-content {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
+            text-align: center;
+            padding: 2rem;
+            animation: fadeUp 1.2s ease-out;
+        }
+        
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: 4.5rem;
             font-weight: 700;
             margin-bottom: 1.5rem;
-            color: #92400e;
+            color: var(--gold);
+            letter-spacing: 1px;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
         }
         
         .hero p {
-            font-size: 1.25rem;
-            color: #b45309;
-            margin-bottom: 2rem;
+            font-size: 1.5rem;
+            color: var(--light);
+            margin-bottom: 2.5rem;
+            font-weight: 300;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
         .btn {
             display: inline-block;
-            padding: 1rem 2rem;
-            background: #d97706;
-            color: white;
+            padding: 1.2rem 2.8rem;
+            background: var(--gold);
+            color: var(--dark);
             text-decoration: none;
-            border-radius: 8px;
+            border-radius: 0;
             font-weight: 600;
-            transition: all 0.3s;
+            transition: all 0.4s;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            border: 2px solid var(--gold);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: transparent;
+            transition: width 0.4s;
+            z-index: -1;
         }
         
         .btn:hover {
-            background: #b45309;
-            transform: translateY(-2px);
+            color: var(--gold);
+            background: transparent;
+        }
+        
+        .btn:hover::before {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
         }
         
         .section {
-            padding: 5rem 2rem;
+            padding: 6rem 2rem;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 5rem;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 3rem;
+            color: var(--gold);
+            display: inline-block;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--gold);
         }
         
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
         }
         
         .menu-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
         }
         
         .menu-card {
-            background: white;
-            border-radius: 12px;
+            background: rgba(30, 30, 30, 0.8);
+            border-radius: 5px;
             overflow: hidden;
-            box-shadow: 0 4px 20px rgba(217, 119, 6, 0.1);
-            transition: transform 0.3s;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            transition: all 0.4s;
+            position: relative;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .menu-card.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
         
         .menu-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-15px);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.3);
+        }
+        
+        .ribbon {
+            position: absolute;
+            top: 15px;
+            right: -30px;
+            background: var(--accent);
+            color: white;
+            padding: 0.5rem 2.5rem;
+            transform: rotate(45deg);
+            font-weight: 600;
+            font-size: 0.9rem;
+            z-index: 10;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
         }
         
         .menu-image {
             width: 100%;
-            height: 200px;
-            background: linear-gradient(45deg, #d97706, #f59e0b);
+            height: 280px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 3rem;
-            color: white;
+            font-size: 5rem;
+            color: var(--gold);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .menu-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, transparent 0%, rgba(212, 175, 55, 0.1) 100%);
         }
         
         .menu-info {
-            padding: 1.5rem;
+            padding: 2rem;
         }
         
         .menu-title {
-            font-size: 1.25rem;
+            font-size: 1.8rem;
             font-weight: 600;
             margin-bottom: 0.5rem;
-            color: #92400e;
+            color: var(--gold);
+            display: flex;
+            justify-content: space-between;
         }
         
         .menu-price {
-            font-size: 1.25rem;
             font-weight: 700;
-            color: #d97706;
-            margin-bottom: 1rem;
+            color: var(--gold-light);
+        }
+        
+        .menu-description {
+            color: #ccc;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+        
+        .menu-ingredients {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .ingredient {
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--gold-light);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
         }
         
         .hours-section {
-            background: white;
-            padding: 3rem 2rem;
+            background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.8)), 
+                        url('https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?ixlib=rb-4.0.3') center/cover;
+            padding: 6rem 2rem;
+            position: relative;
+        }
+        
+        .hours-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: rgba(20, 20, 20, 0.8);
+            padding: 3rem;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            backdrop-filter: blur(10px);
         }
         
         .hours-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            text-align: center;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2.5rem;
         }
         
         .hour-item {
-            padding: 1rem;
-            border-left: 3px solid #d97706;
-            background: #fef7ed;
+            padding: 2rem;
+            border-left: 3px solid var(--gold);
+            background: rgba(30, 30, 30, 0.6);
+            transition: all 0.4s;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .hour-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .hour-item:hover {
+            transform: translateY(-10px);
+            background: rgba(40, 40, 40, 0.7);
         }
         
         .hour-day {
             font-weight: 600;
-            color: #92400e;
+            color: var(--gold);
             margin-bottom: 0.5rem;
+            font-size: 1.3rem;
         }
         
         .hour-time {
-            color: #b45309;
+            color: #ccc;
+            font-size: 1.2rem;
         }
         
         .footer {
-            background: #92400e;
-            color: white;
-            padding: 3rem 2rem;
-            text-align: center;
+            background: var(--dark);
+            padding: 5rem 2rem 3rem;
+            position: relative;
         }
         
-        .back-btn {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            background: #d97706;
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+        
+        .footer-column h3 {
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--gold);
+        }
+        
+        .footer-column p, .footer-column a {
+            color: #aaa;
+            margin-bottom: 1rem;
+            display: block;
             text-decoration: none;
-            font-weight: 500;
-            z-index: 101;
+            transition: color 0.3s;
+        }
+        
+        .footer-column a:hover {
+            color: var(--gold);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--gold);
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background: var(--gold);
+            color: var(--dark);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 3rem;
+            color: #777;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 3rem;
+        }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0); }
+        }
+        
+        .delayed {
+            animation-delay: 0.2s;
+        }
+        
+        .delayed-2 {
+            animation-delay: 0.4s;
+        }
+        
+        .delayed-3 {
+            animation-delay: 0.6s;
+        }
+        
+        .reservation-form {
+            display: grid;
+            gap: 1.2rem;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .form-group label {
+            margin-bottom: 0.5rem;
+            color: var(--gold-light);
+        }
+        
+        .form-group input, .form-group select, .form-group textarea {
+            padding: 0.8rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            color: white;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+            
+            .menu-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 1.5rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2.5rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .nav {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+            
+            .nav-links {
+                gap: 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .section {
+                padding: 4rem 1.5rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
 <body>
-    <a href="../index.html" class="back-btn">← Back to Portfolio</a>
-    
     <header class="header">
         <nav class="nav">
             <div class="logo">
-                🍽️ Bella Vista
+                <i class="fas fa-utensils"></i> RESTAURANT DEMO
             </div>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#menu">Menu</a></li>
                 <li><a href="#hours">Hours</a></li>
+                <li><a href="#reservations">Reservations</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
@@ -226,38 +609,71 @@
     
     <section class="hero" id="home">
         <div class="hero-content">
-            <h1>Authentic Italian Cuisine</h1>
-            <p>Experience the finest flavors of Italy in our cozy restaurant</p>
-            <a href="#menu" class="btn">View Menu</a>
+            <h1 class="floating">Artisanal Cuisine Experience</h1>
+            <p>Discover the perfect blend of tradition and innovation in our signature dishes</p>
+            <a href="#reservations" class="btn">Reserve Your Table</a>
         </div>
     </section>
     
     <section class="section" id="menu">
         <div class="container">
-            <h2 style="text-align: center; margin-bottom: 3rem; font-size: 2.5rem; color: #92400e;">Our Specialties</h2>
+            <div class="section-title">
+                <h2>Signature Dishes</h2>
+            </div>
             <div class="menu-grid">
                 <div class="menu-card">
-                    <div class="menu-image">🍝</div>
+                    <div class="ribbon">CHEF'S SPECIAL</div>
+                    <div class="menu-image" style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80') center/cover;">
+                    </div>
                     <div class="menu-info">
-                        <h3 class="menu-title">Pasta Carbonara</h3>
-                        <div class="menu-price">$18.50</div>
-                        <p>Traditional Roman pasta with eggs, cheese, and pancetta</p>
+                        <h3 class="menu-title">
+                            Honey Glazed Ribs 
+                            <span class="menu-price">$26.90</span>
+                        </h3>
+                        <p class="menu-description">Slow-cooked pork ribs glazed with our signature honey barbecue sauce, served with roasted seasonal vegetables and truffle mashed potatoes.</p>
+                        <div class="menu-ingredients">
+                            <span class="ingredient">Pork Ribs</span>
+                            <span class="ingredient">Honey Glaze</span>
+                            <span class="ingredient">Rosemary</span>
+                            <span class="ingredient">Garlic</span>
+                        </div>
                     </div>
                 </div>
+                
                 <div class="menu-card">
-                    <div class="menu-image">🍕</div>
+                    <div class="menu-image" style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80') center/cover;">
+                    </div>
                     <div class="menu-info">
-                        <h3 class="menu-title">Margherita Pizza</h3>
-                        <div class="menu-price">$16.00</div>
-                        <p>Classic pizza with fresh mozzarella, tomatoes, and basil</p>
+                        <h3 class="menu-title">
+                            Truffle Mushroom Pizza 
+                            <span class="menu-price">$22.50</span>
+                        </h3>
+                        <p class="menu-description">Wood-fired pizza with wild mushrooms, truffle oil, mozzarella, and fresh basil on our signature thin crust dough.</p>
+                        <div class="menu-ingredients">
+                            <span class="ingredient">Wild Mushrooms</span>
+                            <span class="ingredient">Truffle Oil</span>
+                            <span class="ingredient">Mozzarella</span>
+                            <span class="ingredient">Basil</span>
+                        </div>
                     </div>
                 </div>
+                
                 <div class="menu-card">
-                    <div class="menu-image">🥩</div>
+                    <div class="ribbon">NEW</div>
+                    <div class="menu-image" style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1555126634-323283e090fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80') center/cover;">
+                    </div>
                     <div class="menu-info">
-                        <h3 class="menu-title">Osso Buco</h3>
-                        <div class="menu-price">$28.00</div>
-                        <p>Slow-braised veal shanks with saffron risotto</p>
+                        <h3 class="menu-title">
+                            Seafood Linguine 
+                            <span class="menu-price">$28.75</span>
+                        </h3>
+                        <p class="menu-description">Fresh linguine with shrimp, scallops, and clams in a white wine garlic sauce, topped with fresh parsley and lemon zest.</p>
+                        <div class="menu-ingredients">
+                            <span class="ingredient">Shrimp</span>
+                            <span class="ingredient">Scallops</span>
+                            <span class="ingredient">Clams</span>
+                            <span class="ingredient">White Wine</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -265,31 +681,174 @@
     </section>
     
     <section class="hours-section" id="hours">
-        <div class="container">
-            <h2 style="text-align: center; margin-bottom: 3rem; font-size: 2.5rem; color: #92400e;">Opening Hours</h2>
+        <div class="hours-container">
+            <div class="section-title">
+                <h2>Opening Hours</h2>
+            </div>
             <div class="hours-grid">
                 <div class="hour-item">
-                    <div class="hour-day">Monday - Friday</div>
+                    <div class="hour-day">Monday - Thursday</div>
                     <div class="hour-time">11:30 AM - 10:00 PM</div>
                 </div>
                 <div class="hour-item">
-                    <div class="hour-day">Saturday</div>
-                    <div class="hour-time">12:00 PM - 11:00 PM</div>
+                    <div class="hour-day">Friday - Saturday</div>
+                    <div class="hour-time">12:00 PM - 11:30 PM</div>
                 </div>
                 <div class="hour-item">
                     <div class="hour-day">Sunday</div>
                     <div class="hour-time">12:00 PM - 9:00 PM</div>
                 </div>
+                <div class="hour-item">
+                    <div class="hour-day">Happy Hour</div>
+                    <div class="hour-time">4:00 PM - 6:00 PM Daily</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="section" id="reservations" style="background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80') center/cover;">
+        <div class="container">
+            <div class="section-title">
+                <h2>Make a Reservation</h2>
+            </div>
+            <div style="max-width: 700px; margin: 0 auto; background: rgba(30, 30, 30, 0.8); padding: 3rem; border: 1px solid rgba(212, 175, 55, 0.2);">
+                <form class="reservation-form">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" placeholder="Enter your name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" placeholder="Enter your phone number" required>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem;">
+                        <div class="form-group">
+                            <label for="date">Date</label>
+                            <input type="date" id="date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="time">Time</label>
+                            <select id="time" required>
+                                <option value="">Select time</option>
+                                <option value="17:00">5:00 PM</option>
+                                <option value="17:30">5:30 PM</option>
+                                <option value="18:00">6:00 PM</option>
+                                <option value="18:30">6:30 PM</option>
+                                <option value="19:00">7:00 PM</option>
+                                <option value="19:30">7:30 PM</option>
+                                <option value="20:00">8:00 PM</option>
+                                <option value="20:30">8:30 PM</option>
+                                <option value="21:00">9:00 PM</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem;">
+                        <div class="form-group">
+                            <label for="guests">Number of Guests</label>
+                            <select id="guests" required>
+                                <option value="1">1 person</option>
+                                <option value="2">2 people</option>
+                                <option value="3">3 people</option>
+                                <option value="4" selected>4 people</option>
+                                <option value="5">5 people</option>
+                                <option value="6">6 people</option>
+                                <option value="7">7 people</option>
+                                <option value="8">8 people</option>
+                                <option value="9">9+ people</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="occasion">Occasion (optional)</label>
+                            <select id="occasion">
+                                <option value="">None</option>
+                                <option value="birthday">Birthday</option>
+                                <option value="anniversary">Anniversary</option>
+                                <option value="business">Business Dinner</option>
+                                <option value="celebration">Celebration</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="notes">Special Requests</label>
+                        <textarea id="notes" rows="3" placeholder="Any special requests or requirements"></textarea>
+                    </div>
+                    <button type="submit" class="btn">Book Now</button>
+                </form>
             </div>
         </div>
     </section>
     
     <footer class="footer" id="contact">
-        <div class="container">
-            <h3 style="margin-bottom: 1rem;">Reserve Your Table</h3>
-            <p>Call us at (555) 123-4567 or visit us at 123 Italian Street</p>
-            <p style="margin-top: 2rem; opacity: 0.8;">&copy; 2025 Bella Vista Restaurant. All rights reserved.</p>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>About Restaurant Demo</h3>
+                <p>We pride ourselves on creating exceptional dining experiences with locally sourced ingredients and innovative culinary techniques.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-tripadvisor"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-map-marker-alt"></i> 123 Gourmet Avenue, Culinary District</p>
+                <p><i class="fas fa-phone"></i> (555) 123-4567</p>
+                <p><i class="fas fa-envelope"></i> info@restaurantdemo.com</p>
+                <p><i class="fas fa-clock"></i> Reservations recommended</p>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Newsletter</h3>
+                <p>Subscribe to receive exclusive offers and updates about special events.</p>
+                <form>
+                    <input type="email" placeholder="Your email address" style="width: 100%; padding: 0.8rem; margin-bottom: 1rem; background: rgba(255,255,255,0.1); border: 1px solid rgba(212,175,55,0.3); color: white;">
+                    <button type="submit" class="btn" style="width: 100%;">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2025 Arcan DevLab. All rights reserved.</p>
         </div>
     </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+            
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+            
+            document.querySelectorAll('.menu-card, .hour-item').forEach(item => {
+                observer.observe(item);
+            });
+            const reservationForm = document.querySelector('.reservation-form');
+            if (reservationForm) {
+                reservationForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const name = document.getElementById('name').value;
+                    alert(`Thank you ${name}! Your reservation request has been received. We will confirm shortly.`);
+                    reservationForm.reset();
+                });
+            }
+        });
+    </script>
 </body>
 </html>

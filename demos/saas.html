@@ -3,277 +3,556 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modern SaaS - Demo</title>
+    <title>Saas Demo | Modern Collaboration Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'slack-purple': '#4A154B',
+                        'slack-green': '#2EB67D',
+                        'slack-blue': '#36C5F0',
+                        'slack-red': '#E01E5A',
+                        'slack-yellow': '#ECB22E',
+                        'saas-light': '#F8F5FF',
+                        'saas-dark': '#1A0D2B',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Inter', sans-serif;
-            line-height: 1.6;
-            color: #1f2937;
-            background: #f9fafb;
-        }
-        
-        .header {
-            background: #ffffff;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        
-        .nav {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #6366f1;
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-        
-        .nav-links a {
-            text-decoration: none;
-            color: #6b7280;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-        
-        .nav-links a:hover {
-            color: #6366f1;
-        }
-        
-        .hero {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 6rem 2rem;
-            text-align: center;
-            color: white;
-        }
-        
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-        }
-        
-        .hero p {
-            font-size: 1.25rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
-        
-        .btn {
-            display: inline-block;
-            padding: 1rem 2rem;
-            background: #ffffff;
-            color: #6366f1;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: 600;
-            transition: all 0.3s;
-        }
-        
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-        }
-        
-        .section {
-            padding: 5rem 2rem;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-        
-        .feature-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-            text-align: center;
-            transition: transform 0.3s;
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .feature-icon {
-            width: 60px;
-            height: 60px;
-            background: #6366f1;
-            border-radius: 50%;
-            margin: 0 auto 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            color: white;
-        }
-        
-        .pricing {
-            background: white;
-            padding: 5rem 2rem;
-        }
-        
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-        
-        .pricing-card {
-            background: #f9fafb;
-            padding: 2rem;
-            border-radius: 12px;
-            text-align: center;
-            border: 2px solid transparent;
-            transition: all 0.3s;
-        }
-        
-        .pricing-card.featured {
-            background: #6366f1;
-            color: white;
-            border-color: #6366f1;
-            transform: scale(1.05);
-        }
-        
-        .pricing-card:hover {
-            border-color: #6366f1;
-        }
-        
-        .price {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin: 1rem 0;
-        }
-        
-        .footer {
-            background: #1f2937;
-            color: white;
-            padding: 3rem 2rem;
-            text-align: center;
-        }
-        
-        .back-btn {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            background: #6366f1;
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 500;
-            z-index: 101;
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body>
-    <a href="../index.html" class="back-btn">← Back to Portfolio</a>
-    
-    <header class="header">
-        <nav class="nav">
-            <div class="logo">SaaSPro</div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#features">Features</a></li>
-                <li><a href="#pricing">Pricing</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
+<body class="font-sans bg-saas-light text-saas-dark">
+    <header class="sticky top-0 z-50 bg-white shadow-sm transition-all duration-300">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <div class="w-10 h-10 rounded-lg bg-gradient-to-r from-slack-purple to-slack-blue flex items-center justify-center">
+                    <i class="fas fa-comments text-white text-xl"></i>
+                </div>
+                <span class="ml-3 text-xl font-bold text-slack-purple">Saas Demo</span>
+            </div>
+            
+            <nav class="hidden md:flex space-x-8">
+                <a href="#" class="font-medium hover:text-slack-purple transition-colors">Features</a>
+                <a href="#" class="font-medium hover:text-slack-purple transition-colors">Solutions</a>
+                <a href="#" class="font-medium hover:text-slack-purple transition-colors">Enterprise</a>
+                <a href="#" class="font-medium hover:text-slack-purple transition-colors">Pricing</a>
+                <a href="#" class="font-medium hover:text-slack-purple transition-colors">Resources</a>
+            </nav>
+            
+            <div class="flex items-center space-x-4">
+                <a href="#" class="hidden md:block font-medium hover:text-slack-purple transition-colors">Sign in</a>
+                <a href="#" class="px-4 py-2 bg-white border border-slack-purple text-slack-purple rounded-lg font-medium hover:bg-slack-purple hover:text-white transition-all duration-300">
+                    Get Started
+                </a>
+                <button class="md:hidden text-slack-purple">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
     </header>
-    
-    <section class="hero" id="home">
-        <div class="hero-content">
-            <h1>The Future of Software</h1>
-            <p>Streamline your workflow with our cutting-edge SaaS platform designed for modern teams.</p>
-            <a href="#features" class="btn">Get Started Free</a>
+
+    <!-- Hero Section -->
+    <section class="relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-slack-purple to-indigo-900 transform -skew-y-3 origin-top-left -translate-y-16"></div>
+        <div class="container mx-auto px-4 py-32 relative z-10">
+            <div class="max-w-3xl mx-auto text-center">
+                <h1 class="text-4xl md:text-6xl font-bold text-white mb-6">
+                    Where <span class="text-slack-yellow">work</span> happens
+                </h1>
+                <p class="text-xl text-white/90 mb-10 max-w-2xl mx-auto">
+                    Saas Demo brings your team's communication together, helping you work more efficiently and stay connected, no matter where you are.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="#" class="px-8 py-4 bg-white text-slack-purple font-bold rounded-lg hover:bg-saas-light hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+                        Try for Free
+                    </a>
+                    <a href="#" class="px-8 py-4 bg-transparent border-2 border-white text-white font-bold rounded-lg hover:bg-white/10 transition-all duration-300 transform hover:-translate-y-1">
+                        See Demo
+                    </a>
+                </div>
+            </div>
         </div>
-    </section>
-    
-    <section class="section" id="features">
-        <div class="container">
-            <h2 style="text-align: center; margin-bottom: 3rem; font-size: 2.5rem; color: #1f2937;">Key Features</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">⚡</div>
-                    <h3 style="margin-bottom: 1rem; color: #6366f1;">Lightning Fast</h3>
-                    <p>Experience blazing fast performance with our optimized cloud infrastructure.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🔒</div>
-                    <h3 style="margin-bottom: 1rem; color: #6366f1;">Secure & Reliable</h3>
-                    <p>Enterprise-grade security with 99.9% uptime guarantee for your peace of mind.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📊</div>
-                    <h3 style="margin-bottom: 1rem; color: #6366f1;">Advanced Analytics</h3>
-                    <p>Powerful insights and real-time analytics to drive your business decisions.</p>
+        
+        <div class="container mx-auto px-4 relative z-10 -mt-20">
+            <div class="bg-white rounded-2xl shadow-xl p-6 max-w-5xl mx-auto">
+                <div class="flex flex-wrap justify-center gap-4">
+                    <div class="w-24 h-24 rounded-xl bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center shadow-md">
+                        <i class="fas fa-comments text-3xl text-slack-blue"></i>
+                    </div>
+                    <div class="w-24 h-24 rounded-xl bg-gradient-to-br from-purple-100 to-purple-200 flex items-center justify-center shadow-md">
+                        <i class="fas fa-file-alt text-3xl text-slack-purple"></i>
+                    </div>
+                    <div class="w-24 h-24 rounded-xl bg-gradient-to-br from-green-100 to-green-200 flex items-center justify-center shadow-md">
+                        <i class="fas fa-video text-3xl text-slack-green"></i>
+                    </div>
+                    <div class="w-24 h-24 rounded-xl bg-gradient-to-br from-yellow-100 to-yellow-200 flex items-center justify-center shadow-md">
+                        <i class="fas fa-tasks text-3xl text-slack-yellow"></i>
+                    </div>
+                    <div class="w-24 h-24 rounded-xl bg-gradient-to-br from-red-100 to-red-200 flex items-center justify-center shadow-md">
+                        <i class="fas fa-calendar-alt text-3xl text-slack-red"></i>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
-    
-    <section class="pricing" id="pricing">
-        <div class="container">
-            <h2 style="text-align: center; margin-bottom: 3rem; font-size: 2.5rem; color: #1f2937;">Simple Pricing</h2>
-            <div class="pricing-grid">
-                <div class="pricing-card">
-                    <h3>Starter</h3>
-                    <div class="price">$9<span style="font-size: 1rem; color: #6b7280;">/month</span></div>
-                    <p>Perfect for small teams</p>
+
+    <!-- Features Section -->
+    <section class="py-20">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <span class="inline-block px-4 py-1 bg-purple-100 text-slack-purple rounded-full font-medium mb-4">FEATURES</span>
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">Work smarter, not harder</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Powerful features designed to help your team collaborate more effectively and get more done.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="w-16 h-16 rounded-lg bg-purple-100 flex items-center justify-center mb-6">
+                        <i class="fas fa-comments text-2xl text-slack-purple"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Channels</h3>
+                    <p class="text-gray-600 mb-4">
+                        Organize conversations in dedicated spaces for projects, topics, or teams—all searchable in one place.
+                    </p>
+                    <a href="#" class="text-slack-purple font-medium hover:underline">Learn more →</a>
                 </div>
-                <div class="pricing-card featured">
-                    <h3>Professional</h3>
-                    <div class="price">$29<span style="font-size: 1rem; opacity: 0.8;">/month</span></div>
-                    <p>Most popular choice</p>
+                
+                <div class="bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="w-16 h-16 rounded-lg bg-blue-100 flex items-center justify-center mb-6">
+                        <i class="fas fa-video text-2xl text-slack-blue"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Video Calls</h3>
+                    <p class="text-gray-600 mb-4">
+                        Connect face-to-face with HD video and audio calls right within your workspace.
+                    </p>
+                    <a href="#" class="text-slack-purple font-medium hover:underline">Learn more →</a>
                 </div>
-                <div class="pricing-card">
-                    <h3>Enterprise</h3>
-                    <div class="price">Custom</div>
-                    <p>For large organizations</p>
+                
+                <div class="bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="w-16 h-16 rounded-lg bg-green-100 flex items-center justify-center mb-6">
+                        <i class="fas fa-shield-alt text-2xl text-slack-green"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Enterprise Security</h3>
+                    <p class="text-gray-600 mb-4">
+                        Keep your data safe with enterprise-grade security and compliance features.
+                    </p>
+                    <a href="#" class="text-slack-purple font-medium hover:underline">Learn more →</a>
+                </div>
+                
+                <div class="bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="w-16 h-16 rounded-lg bg-yellow-100 flex items-center justify-center mb-6">
+                        <i class="fas fa-plug text-2xl text-slack-yellow"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Integrations</h3>
+                    <p class="text-gray-600 mb-4">
+                        Connect tools and automate workflows with 2,500+ apps and services.
+                    </p>
+                    <a href="#" class="text-slack-purple font-medium hover:underline">Learn more →</a>
+                </div>
+                
+                <div class="bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="w-16 h-16 rounded-lg bg-red-100 flex items-center justify-center mb-6">
+                        <i class="fas fa-search text-2xl text-slack-red"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Powerful Search</h3>
+                    <p class="text-gray-600 mb-4">
+                        Find what you need instantly with our intuitive and powerful search capabilities.
+                    </p>
+                    <a href="#" class="text-slack-purple font-medium hover:underline">Learn more →</a>
+                </div>
+                
+                <div class="bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="w-16 h-16 rounded-lg bg-purple-100 flex items-center justify-center mb-6">
+                        <i class="fas fa-mobile-alt text-2xl text-slack-purple"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Mobile Experience</h3>
+                    <p class="text-gray-600 mb-4">
+                        Stay connected wherever you go with our fully-featured mobile apps.
+                    </p>
+                    <a href="#" class="text-slack-purple font-medium hover:underline">Learn more →</a>
                 </div>
             </div>
         </div>
     </section>
-    
-    <footer class="footer" id="contact">
-        <div class="container">
-            <h3 style="margin-bottom: 1rem;">Ready to Get Started?</h3>
-            <p>Join thousands of teams already using SaaSPro</p>
-            <p style="margin-top: 2rem; color: #9ca3af;">&copy; 2025 SaaSPro. All rights reserved.</p>
+
+    <!-- Testimonials Section -->
+    <section class="py-20 bg-gradient-to-b from-white to-saas-light">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <span class="inline-block px-4 py-1 bg-purple-100 text-slack-purple rounded-full font-medium mb-4">TESTIMONIALS</span>
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">Trusted by teams worldwide</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    See what teams are saying about how Saas Demo helps them work better together.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white rounded-xl p-8 shadow-md">
+                    <div class="flex items-center mb-6">
+                        <div class="w-14 h-14 rounded-full bg-gradient-to-r from-slack-purple to-indigo-600 flex items-center justify-center text-white font-bold text-xl">
+                            SJ
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="font-bold">Sarah Johnson</h4>
+                            <p class="text-gray-500">Product Manager, TechCorp</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic mb-6">
+                        "Saas Demo has transformed how our remote team collaborates. We've seen a 40% increase in productivity since implementation."
+                    </p>
+                    <div class="flex text-slack-yellow">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl p-8 shadow-md">
+                    <div class="flex items-center mb-6">
+                        <div class="w-14 h-14 rounded-full bg-gradient-to-r from-slack-blue to-cyan-500 flex items-center justify-center text-white font-bold text-xl">
+                            MK
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="font-bold">Michael Kim</h4>
+                            <p class="text-gray-500">CTO, StartupHub</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic mb-6">
+                        "The integration capabilities are unmatched. We've connected all our tools and automated workflows that used to take hours."
+                    </p>
+                    <div class="flex text-slack-yellow">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl p-8 shadow-md">
+                    <div class="flex items-center mb-6">
+                        <div class="w-14 h-14 rounded-full bg-gradient-to-r from-slack-green to-emerald-500 flex items-center justify-center text-white font-bold text-xl">
+                            AR
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="font-bold">Amanda Rodriguez</h4>
+                            <p class="text-gray-500">Director, Global Marketing</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic mb-6">
+                        "Our global team finally feels connected. The video quality is exceptional and the channel organization keeps everyone focused."
+                    </p>
+                    <div class="flex text-slack-yellow">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="py-20">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <span class="inline-block px-4 py-1 bg-purple-100 text-slack-purple rounded-full font-medium mb-4">PRICING</span>
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">Simple, transparent pricing</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Choose the plan that works best for your team with no hidden fees.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <div class="bg-white rounded-2xl border border-gray-200 p-8 flex flex-col">
+                    <h3 class="text-2xl font-bold mb-4">Free</h3>
+                    <p class="text-gray-600 mb-6">For individuals and small teams getting started</p>
+                    
+                    <div class="mb-8">
+                        <span class="text-4xl font-bold">$0</span>
+                        <span class="text-gray-500">/month</span>
+                    </div>
+                    
+                    <ul class="space-y-4 mb-8 flex-grow">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-slack-green mt-1 mr-3"></i>
+                            <span>Up to 10 users</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-slack-green mt-1 mr-3"></i>
+                            <span>5GB file storage</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-slack-green mt-1 mr-3"></i>
+                            <span>Unlimited messages</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-slack-green mt-1 mr-3"></i>
+                            <span>1:1 video calls</span>
+                        </li>
+                        <li class="flex items-start text-gray-400">
+                            <i class="fas fa-times-circle mt-1 mr-3"></i>
+                            <span>Screen sharing</span>
+                        </li>
+                        <li class="flex items-start text-gray-400">
+                            <i class="fas fa-times-circle mt-1 mr-3"></i>
+                            <span>Group video calls</span>
+                        </li>
+                    </ul>
+                    
+                    <a href="#" class="px-6 py-3 bg-white border border-slack-purple text-slack-purple rounded-lg font-medium text-center hover:bg-slack-purple hover:text-white transition-all duration-300">
+                        Get Started
+                    </a>
+                </div>
+                
+                <div class="bg-gradient-to-br from-slack-purple to-indigo-800 rounded-2xl text-white p-8 flex flex-col relative transform lg:-translate-y-4 shadow-xl">
+                    <div class="absolute top-0 right-0 bg-slack-yellow text-saas-dark font-bold px-4 py-2 rounded-bl-lg">
+                        Most Popular
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Pro</h3>
+                    <p class="text-white/80 mb-6">For growing teams that need more power</p>
+                    
+                    <div class="mb-8">
+                        <span class="text-4xl font-bold">$12</span>
+                        <span class="text-white/80">/user/month</span>
+                    </div>
+                    
+                    <ul class="space-y-4 mb-8 flex-grow">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-slack-yellow mt-1 mr-3"></i>
+                            <span>Unlimited users</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-slack-yellow mt-1 mr-3"></i>
+                            <span>20GB file storage per user</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-slack-yellow mt-1 mr-3"></i>
+                            <span>Unlimited messages</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-slack-yellow mt-1 mr-3"></i>
+                            <span>Group video calls (up to 15 people)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-slack-yellow mt-1 mr-3"></i>
+                            <span>Screen sharing</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-slack-yellow mt-1 mr-3"></i>
+                            <span>Workflow builder</span>
+                        </li>
+                    </ul>
+                    
+                    <a href="#" class="px-6 py-3 bg-white text-slack-purple rounded-lg font-bold text-center hover:bg-saas-light hover:shadow-lg transition-all duration-300">
+                        Try Free for 30 Days
+                    </a>
+                </div>
+                
+                <div class="bg-white rounded-2xl border border-gray-200 p-8 flex flex-col">
+                    <h3 class="text-2xl font-bold mb-4">Enterprise</h3>
+                    <p class="text-gray-600 mb-6">For large organizations with complex needs</p>
+                    
+                    <div class="mb-8">
+                        <span class="text-4xl font-bold">Custom</span>
+                    </div>
+                    
+                    <ul class="space-y-4 mb-8 flex-grow">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-slack-green mt-1 mr-3"></i>
+                            <span>Unlimited everything</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-slack-green mt-1 mr-3"></i>
+                            <span>SAML-based SSO</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-slack-green mt-1 mr-3"></i>
+                            <span>Compliance exports</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-slack-green mt-1 mr-3"></i>
+                            <span>24/7 support with 99.99% uptime</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-slack-green mt-1 mr-3"></i>
+                            <span>Dedicated customer success manager</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-slack-green mt-1 mr-3"></i>
+                            <span>Custom security policies</span>
+                        </li>
+                    </ul>
+                    
+                    <a href="#" class="px-6 py-3 bg-white border border-slack-purple text-slack-purple rounded-lg font-medium text-center hover:bg-slack-purple hover:text-white transition-all duration-300">
+                        Contact Sales
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-20 bg-gradient-to-b from-saas-light to-white">
+        <div class="container mx-auto px-4 max-w-4xl">
+            <div class="text-center mb-16">
+                <span class="inline-block px-4 py-1 bg-purple-100 text-slack-purple rounded-full font-medium mb-4">FAQ</span>
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">Frequently asked questions</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Everything you need to know about Saas Demo. Can't find an answer? Contact us anytime.
+                </p>
+            </div>
+            
+            <div class="space-y-6">
+                <div class="bg-white rounded-xl p-6 shadow-md">
+                    <h3 class="text-xl font-bold mb-3 flex justify-between items-center cursor-pointer">
+                        <span>How secure is Saas Demo?</span>
+                        <i class="fas fa-chevron-down text-slack-purple"></i>
+                    </h3>
+                    <p class="text-gray-600">
+                        Security is our top priority. We use enterprise-grade encryption both in transit and at rest, regular security audits, and compliance with industry standards including SOC 2, GDPR, and HIPAA. All data is stored securely with strict access controls.
+                    </p>
+                </div>
+                
+                <div class="bg-white rounded-xl p-6 shadow-md">
+                    <h3 class="text-xl font-bold mb-3 flex justify-between items-center cursor-pointer">
+                        <span>Can I use Saas Demo on mobile?</span>
+                        <i class="fas fa-chevron-down text-slack-purple"></i>
+                    </h3>
+                    <p class="text-gray-600">
+                        Absolutely! Saas Demo offers fully-featured iOS and Android apps that allow you to stay connected with your team wherever you are. All core functionality including messaging, file sharing, and video calls are available on mobile.
+                    </p>
+                </div>
+                
+                <div class="bg-white rounded-xl p-6 shadow-md">
+                    <h3 class="text-xl font-bold mb-3 flex justify-between items-center cursor-pointer">
+                        <span>How does the free plan work?</span>
+                        <i class="fas fa-chevron-down text-slack-purple"></i>
+                    </h3>
+                    <p class="text-gray-600">
+                        Our free plan is designed for small teams and individuals. You get access to all core messaging features, 1:1 video calls, and up to 5GB of storage for your team. There are no time limits - you can use the free plan indefinitely.
+                    </p>
+                </div>
+                
+                <div class="bg-white rounded-xl p-6 shadow-md">
+                    <h3 class="text-xl font-bold mb-3 flex justify-between items-center cursor-pointer">
+                        <span>Can I upgrade or downgrade my plan later?</span>
+                        <i class="fas fa-chevron-down text-slack-purple"></i>
+                    </h3>
+                    <p class="text-gray-600">
+                        Yes, you can change your plan at any time. Upgrades take effect immediately, while downgrades take effect at the end of your current billing period. You'll only pay for what you use, and we'll prorate any differences in cost.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-gradient-to-r from-slack-purple to-indigo-800">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
+                Ready to transform how your team works?
+            </h2>
+            <p class="text-xl text-white/90 mb-10 max-w-2xl mx-auto">
+                Join millions of productive teams that use Saas Demo to do their best work together.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#" class="px-8 py-4 bg-white text-slack-purple font-bold rounded-lg hover:bg-saas-light hover:shadow-lg transition-all duration-300 transform hover:scale-105">
+                    Get Started for Free
+                </a>
+                <a href="#" class="px-8 py-4 bg-transparent border-2 border-white text-white font-bold rounded-lg hover:bg-white/10 transition-all duration-300 transform hover:scale-105">
+                    Schedule a Demo
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-saas-dark text-white py-16">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
+                <div class="lg:col-span-2">
+                    <div class="flex items-center mb-6">
+                        <div class="w-10 h-10 rounded-lg bg-gradient-to-r from-slack-purple to-slack-blue flex items-center justify-center">
+                            <i class="fas fa-comments text-white text-xl"></i>
+                        </div>
+                        <span class="ml-3 text-xl font-bold">Saas Demo</span>
+                    </div>
+                    <p class="text-gray-400 mb-6 max-w-md">
+                        Bringing teams together to do their best work, wherever they are. Modern collaboration for modern teams.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-slack-purple transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-slack-purple transition-colors">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-slack-purple transition-colors">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-slack-purple transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="font-bold text-lg mb-6">Product</h3>
+                    <ul class="space-y-4">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Features</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Integrations</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Enterprise</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Solutions</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Pricing</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-bold text-lg mb-6">Resources</h3>
+                    <ul class="space-y-4">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Blog</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Help Center</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Community</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Events</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Developers</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-bold text-lg mb-6">Company</h3>
+                    <ul class="space-y-4">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Careers</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Contact Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Partners</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Legal</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-16 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-500">
+                    &copy; 2025 Arcan DevLab. All rights reserved.
+                </p>
+                <div class="flex space-x-8 mt-4 md:mt-0">
+                    <a href="#" class="text-gray-500 hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="#" class="text-gray-500 hover:text-white transition-colors">Terms of Service</a>
+                    <a href="#" class="text-gray-500 hover:text-white transition-colors">Cookie Policy</a>
+                </div>
+            </div>
         </div>
     </footer>
 </body>

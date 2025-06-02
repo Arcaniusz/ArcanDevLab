@@ -3,214 +3,743 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Corporate Professional - Demo</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Corporate - Demo Corporate Solutions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Sohne:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary: #0B1426;
+            --secondary: #1E3A5F;
+            --accent: #3B82F6;
+            --light-blue: #EBF4FF;
+            --text-primary: #0F172A;
+            --text-secondary: #475569;
+            --text-light: #64748B;
+            --border: #E2E8F0;
+            --white: #FFFFFF;
+            --gray-50: #F8FAFC;
+            --gray-100: #F1F5F9;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
         
-        body {
-            font-family: 'Inter', sans-serif;
-            line-height: 1.6;
-            color: #1f2937;
-            background: #ffffff;
+        html {
+            scroll-behavior: smooth;
         }
         
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--white);
+            overflow-x: hidden;
+        }
+        
+        /* Header & Navigation */
         .header {
-            background: #ffffff;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: sticky;
+            position: fixed;
             top: 0;
-            z-index: 100;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            transition: all 0.3s ease;
         }
         
         .nav {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 1rem 2rem;
+            padding: 0 3rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            height: 80px;
         }
         
         .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #2563eb;
+            font-family: 'Sohne', serif;
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: var(--primary);
+            letter-spacing: -0.02em;
         }
         
         .nav-links {
             display: flex;
-            gap: 2rem;
+            gap: 3rem;
             list-style: none;
+            align-items: center;
         }
         
         .nav-links a {
             text-decoration: none;
-            color: #374151;
+            color: var(--text-secondary);
             font-weight: 500;
-            transition: color 0.3s;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            position: relative;
         }
         
         .nav-links a:hover {
-            color: #2563eb;
+            color: var(--accent);
         }
         
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .cta-btn {
+            background: var(--accent);
+            color: var(--white) !important;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+        }
+        
+        .cta-btn:hover {
+            background: #2563EB;
+            transform: translateY(-1px);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+        }
+        
+        /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-            padding: 6rem 2rem;
-            text-align: center;
+            background: linear-gradient(135deg, var(--gray-50) 0%, var(--light-blue) 100%);
+            padding: 140px 3rem 100px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23E2E8F0' fill-opacity='0.3'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.4;
         }
         
         .hero-content {
-            max-width: 800px;
+            max-width: 1400px;
             margin: 0 auto;
+            position: relative;
+            z-index: 2;
         }
         
-        .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            color: #1f2937;
-        }
-        
-        .hero p {
-            font-size: 1.25rem;
-            color: #6b7280;
-            margin-bottom: 2rem;
-        }
-        
-        .btn {
-            display: inline-block;
-            padding: 1rem 2rem;
-            background: #2563eb;
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: 600;
-            transition: all 0.3s;
-        }
-        
-        .btn:hover {
-            background: #1d4ed8;
-            transform: translateY(-2px);
-        }
-        
-        .section {
-            padding: 5rem 2rem;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .grid {
+        .hero-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
         }
         
-        .card {
-            background: white;
-            padding: 2rem;
+        .hero-text h1 {
+            font-family: 'Sohne', serif;
+            font-size: 4.5rem;
+            font-weight: 600;
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            color: var(--primary);
+            letter-spacing: -0.03em;
+        }
+        
+        .hero-text .subtitle {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            font-weight: 400;
+            line-height: 1.4;
+        }
+        
+        .hero-actions {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+        
+        .btn-primary {
+            background: var(--accent);
+            color: var(--white);
+            padding: 16px 32px;
             border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
         }
         
-        .card:hover {
-            transform: translateY(-5px);
+        .btn-primary:hover {
+            background: #2563EB;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(59, 130, 246, 0.4);
         }
         
-        .card h3 {
-            color: #2563eb;
-            margin-bottom: 1rem;
-            font-size: 1.25rem;
+        .btn-secondary {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
         }
         
-        .footer {
-            background: #1f2937;
-            color: white;
-            padding: 3rem 2rem;
+        .btn-secondary:hover {
+            color: var(--accent);
+            transform: translateX(4px);
+        }
+        
+        /* Stats Section */
+        .stats {
+            background: var(--white);
+            padding: 80px 3rem;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .stats-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3rem;
+        }
+        
+        .stat-item {
             text-align: center;
         }
         
-        .back-btn {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            background: #2563eb;
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            text-decoration: none;
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+            font-family: 'Sohne', serif;
+        }
+        
+        .stat-label {
+            color: var(--text-secondary);
             font-weight: 500;
-            z-index: 101;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-size: 0.9rem;
+        }
+        
+        /* Services Section */
+        .services {
+            padding: 120px 3rem;
+            background: var(--gray-50);
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+        
+        .section-title {
+            font-family: 'Sohne', serif;
+            font-size: 3rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+        
+        .section-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+        }
+        
+        .service-card {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent), #8B5CF6);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--accent), #8B5CF6);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+            color: var(--white);
+            font-size: 1.5rem;
+        }
+        
+        .service-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .service-card p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+        
+        .service-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .service-link:hover {
+            transform: translateX(4px);
+        }
+        
+        /* About Section */
+        .about {
+            padding: 120px 3rem;
+            background: var(--white);
+        }
+        
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+        
+        .about-content h2 {
+            font-family: 'Sohne', serif;
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 2rem;
+            letter-spacing: -0.02em;
+        }
+        
+        .about-content p {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+        
+        .about-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .feature-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--light-blue);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            padding: 100px 3rem;
+            text-align: center;
+            color: var(--white);
+        }
+        
+        .cta-content h2 {
+            font-family: 'Sohne', serif;
+            font-size: 3rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+        
+        .cta-content p {
+            font-size: 1.25rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+        }
+        
+        .cta-btn-white {
+            background: var(--white);
+            color: var(--primary);
+            padding: 16px 32px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        
+        .cta-btn-white:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(255, 255, 255, 0.3);
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--primary);
+            color: var(--white);
+            padding: 80px 3rem 40px;
+        }
+        
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-brand h3 {
+            font-family: 'Sohne', serif;
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-brand p {
+            opacity: 0.8;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-section h4 {
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-section ul li a {
+            color: var(--white);
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+        
+        .footer-section ul li a:hover {
+            opacity: 1;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            text-align: center;
+            opacity: 0.6;
+        }
+        
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-grid, .about-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav {
+                padding: 0 1.5rem;
+            }
+            
+            .hero {
+                padding: 120px 1.5rem 80px;
+            }
+            
+            .hero-text h1 {
+                font-size: 3rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
         }
     </style>
 </head>
 <body>
-    <a href="../index.html" class="back-btn">← Back to Portfolio</a>
-    
     <header class="header">
         <nav class="nav">
-            <div class="logo">CorporatePro</div>
+            <div class="logo">Corporate - Demo</div>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
-                <li><a href="#services">Services</a></li>
+                <li><a href="#services">Solutions</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#contact">Contact</a></li>
+                <li><a href="#contact" class="cta-btn">Get Started</a></li>
             </ul>
         </nav>
     </header>
     
     <section class="hero" id="home">
         <div class="hero-content">
-            <h1>Professional Business Solutions</h1>
-            <p>We deliver exceptional corporate services with trust, reliability, and professional excellence.</p>
-            <a href="#services" class="btn">Our Services</a>
-        </div>
-    </section>
-    
-    <section class="section" id="services">
-        <div class="container">
-            <h2 style="text-align: center; margin-bottom: 3rem; font-size: 2.5rem; color: #1f2937;">Our Services</h2>
-            <div class="grid">
-                <div class="card">
-                    <h3>Business Consulting</h3>
-                    <p>Strategic planning and business optimization to help your company grow and succeed in today's competitive market.</p>
+            <div class="hero-grid">
+                <div class="hero-text">
+                    <h1>Strategic Excellence for Modern Enterprises</h1>
+                    <p class="subtitle">Transform your business with data-driven strategies, operational excellence, and forward-thinking leadership that delivers measurable results.</p>
+                    <div class="hero-actions">
+                        <a href="#services" class="btn-primary">Explore Solutions</a>
+                        <a href="#about" class="btn-secondary">
+                            Our Approach →
+                        </a>
+                    </div>
                 </div>
-                <div class="card">
-                    <h3>Financial Advisory</h3>
-                    <p>Expert financial guidance and investment strategies to secure your business's financial future and growth.</p>
-                </div>
-                <div class="card">
-                    <h3>Legal Services</h3>
-                    <p>Comprehensive legal support for all your business needs, from contracts to compliance and regulatory matters.</p>
+                <div class="hero-visual">
                 </div>
             </div>
         </div>
     </section>
     
-    <section class="section" id="about" style="background: #f8fafc;">
+    <section class="stats">
+        <div class="stats-container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Enterprise Clients</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">25</div>
+                    <div class="stat-label">Years Experience</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">$2.4B</div>
+                    <div class="stat-label">Value Generated</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">98%</div>
+                    <div class="stat-label">Client Retention</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="services" id="services">
         <div class="container">
-            <h2 style="text-align: center; margin-bottom: 3rem; font-size: 2.5rem; color: #1f2937;">About Us</h2>
-            <div style="max-width: 800px; margin: 0 auto; text-align: center;">
-                <p style="font-size: 1.125rem; color: #6b7280; margin-bottom: 2rem;">With over 20 years of experience in the corporate world, we provide reliable, professional solutions for businesses of all sizes.</p>
-                <p style="font-size: 1.125rem; color: #6b7280;">Our team of experts is dedicated to helping your business achieve its goals through strategic planning, innovative solutions, and unwavering commitment to excellence.</p>
+            <div class="section-header">
+                <h2 class="section-title">Comprehensive Business Solutions</h2>
+                <p class="section-subtitle">We partner with industry leaders to deliver transformational outcomes through strategic consulting, operational optimization, and innovative technology solutions.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">📈</div>
+                    <h3>Strategic Consulting</h3>
+                    <p>Drive sustainable growth with strategic planning, market analysis, and competitive positioning that align with your long-term vision and objectives.</p>
+                    <a href="#" class="service-link">Learn More →</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">💼</div>
+                    <h3>Financial Advisory</h3>
+                    <p>Optimize capital allocation, enhance financial performance, and navigate complex transactions with our comprehensive financial expertise and market insights.</p>
+                    <a href="#" class="service-link">Learn More →</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">⚖️</div>
+                    <h3>Regulatory Compliance</h3>
+                    <p>Ensure seamless regulatory adherence with our specialized legal framework, risk management protocols, and industry-specific compliance solutions.</p>
+                    <a href="#" class="service-link">Learn More →</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🔧</div>
+                    <h3>Operational Excellence</h3>
+                    <p>Streamline processes, reduce inefficiencies, and enhance productivity through data-driven operational improvements and lean methodologies.</p>
+                    <a href="#" class="service-link">Learn More →</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🌐</div>
+                    <h3>Digital Transformation</h3>
+                    <p>Accelerate innovation with cutting-edge technology integration, digital strategy development, and comprehensive change management support.</p>
+                    <a href="#" class="service-link">Learn More →</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">👥</div>
+                    <h3>Leadership Development</h3>
+                    <p>Build organizational capability through executive coaching, leadership training, and talent development programs tailored to your corporate culture.</p>
+                    <a href="#" class="service-link">Learn More →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-content">
+                    <h2>Driving Success Through Strategic Partnership</h2>
+                    <p>For over two decades, Corporate - Demo has been the trusted advisor to Fortune 500 companies and emerging market leaders, delivering measurable value through strategic insight and operational excellence.</p>
+                    <p>Our multidisciplinary approach combines deep industry expertise with innovative methodologies, ensuring that every engagement drives sustainable competitive advantage and long-term value creation.</p>
+                    <div class="about-features">
+                        <div class="feature-item">
+                            <div class="feature-icon">✓</div>
+                            <span>Proven Methodologies</span>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">✓</div>
+                            <span>Industry Expertise</span>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">✓</div>
+                            <span>Global Reach</span>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">✓</div>
+                            <span>Measurable Results</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Transform Your Business?</h2>
+                <p>Partner with Corporate - Demo to unlock your organization's full potential and achieve sustainable competitive advantage in today's dynamic marketplace.</p>
+                <a href="#contact" class="cta-btn-white">Start Your Journey</a>
             </div>
         </div>
     </section>
     
     <footer class="footer" id="contact">
-        <div class="container">
-            <h3 style="margin-bottom: 1rem;">Contact Us</h3>
-            <p>Email: info@corporatepro.com | Phone: (555) 123-4567</p>
-            <p style="margin-top: 2rem; color: #9ca3af;">&copy; 2025 CorporatePro. All rights reserved.</p>
+        <div class="footer-content">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3>Corporate - Demo</h3>
+                    <p>Strategic consulting and business solutions for enterprise leaders seeking transformational growth and operational excellence.</p>
+                    <div style="display: flex; gap: 1rem;">
+                        <a href="mailto:contact@nothing - arcan.sbs" style="color: white; opacity: 0.8;">contact@Corporate - Arcan.sbs</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Solutions</h4>
+                    <ul>
+                        <li><a href="#">Strategic Consulting</a></li>
+                        <li><a href="#">Financial Advisory</a></li>
+                        <li><a href="#">Regulatory Compliance</a></li>
+                        <li><a href="#">Digital Transformation</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Industries</h4>
+                    <ul>
+                        <li><a href="#">Financial Services</a></li>
+                        <li><a href="#">Healthcare</a></li>
+                        <li><a href="#">Technology</a></li>
+                        <li><a href="#">Manufacturing</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Leadership</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Arcan DevLab. All rights reserved. | Privacy Policy | Terms of Service</p>
+            </div>
         </div>
     </footer>
 </body>
